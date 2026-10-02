@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Nombre del producto] | [Nombre del equipo]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ===== COLORES: cámbialos aquí ===== */
+:root{
+  --tinta:#10302B;      /* verde botella oscuro (fondo y texto) */
+  --menta:#DDEFE6;      /* fondo claro */
+  --papel:#F7FBF9;      /* blanco verdoso */
+  --sol:#F4C430;        /* acento amarillo */
+  --linea:#B9D6C9;
+  --titulo:'Bricolage Grotesque',Arial,sans-serif;
+  --texto:'Source Sans 3',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--texto);font-size:1.1rem;line-height:1.6;color:var(--tinta);background:var(--papel)}
+h1,h2,h3{font-family:var(--titulo);line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sol);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+section{padding:5rem 0}
+
+/* Navegación */
+header{position:sticky;top:0;z-index:10;background:var(--tinta);color:var(--papel)}
+nav{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-family:var(--titulo);font-weight:800;font-size:1.2rem;text-decoration:none}
+nav ul{display:flex;gap:1.5rem;list-style:none}
+nav ul a{text-decoration:none;padding:.3rem 0;border-bottom:2px solid transparent}
+nav ul a:hover{border-color:var(--sol)}
+.burger{display:none;background:none;border:0;color:inherit;font-size:1.6rem;cursor:pointer}
+
+/* Inicio */
+#inicio{background:var(--tinta);color:var(--papel);padding:5rem 0 6rem}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;margin-bottom:1.2rem}
+.hero p{max-width:34em;margin-bottom:1.8rem;color:#CFE5DB}
+.btn{display:inline-block;background:var(--sol);color:var(--tinta);font-weight:600;padding:.8rem 1.6rem;border-radius:999px;text-decoration:none}
+.btn:hover{background:#fff}
+.foto{aspect-ratio:1;border:2px dashed var(--sol);border-radius:50%;display:grid;place-items:center;text-align:center;padding:2rem;color:var(--sol);font-size:1rem}
+.foto img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.problema{background:var(--menta);padding:3rem 0}
+.problema .wrap{display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start}
+.problema h2{font-size:1.9rem}
+
+/* Producto */
+h2.t{font-size:clamp(2rem,4vw,3rem);margin-bottom:.8rem;font-weight:800}
+.intro{max-width:40em;margin-bottom:2.5rem}
+.partes{display:grid;grid-template-columns:260px 1fr;gap:2rem;border:2px solid var(--tinta);border-radius:10px;overflow:hidden;background:#fff}
+.lista{list-style:none;background:var(--menta);border-right:2px solid var(--tinta)}
+.lista button{width:100%;text-align:left;font:inherit;font-weight:600;padding:1rem 1.2rem;background:none;border:0;border-bottom:1px solid var(--linea);cursor:pointer;color:var(--tinta)}
+.lista button:hover{background:#fff}
+.lista button[aria-selected="true"]{background:var(--tinta);color:var(--sol)}
+.detalle{padding:2rem 2rem 2rem 0}
+.detalle h3{font-size:1.8rem;margin-bottom:.8rem}
+.detalle dl{display:grid;grid-template-columns:110px 1fr;gap:.5rem 1rem;margin-top:1rem}
+.detalle dt{font-weight:600}
+.detalle .img{aspect-ratio:16/7;border:2px dashed var(--linea);border-radius:8px;display:grid;place-items:center;color:#5d8579;font-size:.95rem;margin-bottom:1.2rem;overflow:hidden}
+.detalle .img img{width:100%;height:100%;object-fit:cover}
+#proceso{background:var(--menta)}
+.pasos{list-style:none;counter-reset:p;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+.pasos li{counter-increment:p;border-top:4px solid var(--tinta);padding-top:1rem}
+.pasos li::before{content:counter(p);display:block;font-family:var(--titulo);font-weight:800;font-size:2.4rem;color:var(--tinta)}
+.pasos strong{display:block;font-family:var(--titulo);font-size:1.2rem;margin-bottom:.3rem}
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2.5rem}
+.dato{background:var(--tinta);color:var(--papel);padding:1.5rem;border-radius:10px}
+.dato b{display:block;font-family:var(--titulo);font-size:2.6rem;color:var(--sol)}
+
+/* Equipo */
+.equipo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem}
+.persona{display:flex;gap:1.1rem;border-bottom:2px solid var(--linea);padding-bottom:1.5rem}
+.avatar{flex:none;width:84px;height:84px;border-radius:50%;background:var(--tinta);color:var(--sol);display:grid;place-items:center;font-family:var(--titulo);font-weight:800;font-size:1.6rem;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.persona h3{font-size:1.3rem}
+.rol{font-weight:600;color:#3d7566;margin-bottom:.4rem}
+.persona p{font-size:1rem}
+footer{background:var(--tinta);color:#CFE5DB;text-align:center;padding:2rem 1rem;font-size:1rem}
+
+@media (max-width:760px){
+  .burger{display:block}
+  nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--tinta)}
+  nav ul.abierto{display:flex}
+  nav ul a{display:block;padding:1rem 1.25rem}
+  .hero,.problema .wrap,.partes{grid-template-columns:1fr}
+  .lista{border-right:0;border-bottom:2px solid var(--tinta)}
+  .detalle{padding:0 1.25rem 1.5rem}
+  .foto{max-width:300px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap" aria-label="Principal">
+    <a class="logo" href="#inicio">[Nombre del equipo]</a>
+    <button class="burger" aria-label="Abrir menú" onclick="document.getElementById('menu').classList.toggle('abierto')">☰</button>
+    <ul id="menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#producto">Producto</a></li>
+      <li><a href="#equipo">Nosotros</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<!-- ============ INICIO ============ -->
+<section id="inicio">
+  <div class="wrap hero">
+    <div>
+      <h1>[Nombre del producto]</h1>
+      <p>[Eslogan o frase corta: qué es y para qué sirve. Ejemplo: Una nueva vida para el plástico que ya usamos.]</p>
+      <a class="btn" href="#producto">Conocer el producto</a>
+    </div>
+    <!-- Para poner tu foto: borra el texto del div y escribe <img src="img/producto.jpg" alt="Descripción"> -->
+    <div class="foto">Aquí va la foto principal del producto</div>
+  </div>
+</section>
+<div class="problema">
+  <div class="wrap">
+    <h2>El problema</h2>
+    <p>[Explica el problema ambiental que resuelve el producto y el impacto positivo que quieren lograr. 3 o 4 líneas.]</p>
+  </div>
+</div>
+
+<!-- ============ PRODUCTO ============ -->
+<section id="producto">
+  <div class="wrap">
+    <h2 class="t">Información del producto</h2>
+    <p class="intro">[Qué es el producto, cómo funciona y por qué es sostenible. Selecciona cada parte para ver su detalle.]</p>
+    <div class="partes">
+      <ul class="lista" id="lista" role="tablist" aria-label="Partes del producto"></ul>
+      <div class="detalle" id="detalle" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="wrap">
+    <h2 class="t">Cómo lo hacemos</h2>
+    <!-- Agrega o quita <li> según los pasos reales -->
+    <ol class="pasos">
+      <li><strong>Recolección</strong>[Dónde y cómo consiguen el material reciclado.]</li>
+      <li><strong>Limpieza</strong>[Cómo se limpia y se clasifica.]</li>
+      <li><strong>Transformación</strong>[Cómo se convierte en las partes del producto.]</li>
+      <li><strong>Ensamble</strong>[Cómo se arma el producto final.]</li>
+    </ol>
+    <div class="datos">
+      <div class="dato"><b>[00 kg]</b>[Material reciclado usado]</div>
+      <div class="dato"><b>[00%]</b>[Dato ambiental destacado]</div>
+      <div class="dato"><b>[00]</b>[Otro dato de impacto]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section id="equipo">
+  <div class="wrap">
+    <h2 class="t">Nosotros</h2>
+    <p class="intro">[Quiénes son como grupo y cuál es su propósito. 2 o 3 líneas.]</p>
+    <!-- Para poner foto: reemplaza las iniciales por <img src="img/nombre.jpg" alt="Nombre"> -->
+    <div class="equipo">
+      <article class="persona">
+        <div class="avatar">ST</div>
+        <div><h3>Santiago Torres</h3><p class="rol">[Rol]</p><p>[Biografía corta de 2 o 3 líneas.]</p></div>
+      </article>
+      <article class="persona">
+        <div class="avatar">MT</div>
+        <div><h3>Maria Tolosa</h3><p class="rol">[Rol]</p><p>[Biografía corta de 2 o 3 líneas.]</p></div>
+      </article>
+      <article class="persona">
+        <div class="avatar">DG</div>
+        <div><h3>David Garzon</h3><p class="rol">[Rol]</p><p>[Biografía corta de 2 o 3 líneas.]</p></div>
+      </article>
+      <article class="persona">
+        <div class="avatar">JB</div>
+        <div><h3>Juan Bautista</h3><p class="rol">[Rol]</p><p>[Biografía corta de 2 o 3 líneas.]</p></div>
+      </article>
+      <article class="persona">
+        <div class="avatar">SM</div>
+        <div><h3>Sebastian Moreno</h3><p class="rol">[Rol]</p><p>[Biografía corta de 2 o 3 líneas.]</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="anio"></span> [Nombre del equipo]. Reciclar hoy es cuidar el mañana.</footer>
+
+<script>
+/* ===== PARTES DEL PRODUCTO: edita, agrega o borra bloques ===== */
+const partes = [
+  { nombre:"Parte 1", material:"[Material]", funcion:"[Qué hace esta parte]", descripcion:"[Descripción de la parte]", imagen:"" },
+  { nombre:"Parte 2", material:"[Material]", funcion:"[Qué hace esta parte]", descripcion:"[Descripción de la parte]", imagen:"" },
+  { nombre:"Parte 3", material:"[Material]", funcion:"[Qué hace esta parte]", descripcion:"[Descripción de la parte]", imagen:"" }
+  /* imagen: escribe la ruta, por ejemplo "img/parte1.jpg" */
+];
+
+const lista = document.getElementById('lista');
+const detalle = document.getElementById('detalle');
+
+function mostrar(i){
+  const p = partes[i];
+  detalle.innerHTML =
+    '<div class="img">' + (p.imagen ? '<img src="'+p.imagen+'" alt="'+p.nombre+'">' : 'Imagen de la parte') + '</div>' +
+    '<h3>'+p.nombre+'</h3><p>'+p.descripcion+'</p>' +
+    '<dl><dt>Material</dt><dd>'+p.material+'</dd><dt>Función</dt><dd>'+p.funcion+'</dd></dl>';
+  lista.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-selected', j===i));
+}
+
+partes.forEach((p,i)=>{
+  const li = document.createElement('li');
+  const b = document.createElement('button');
+  b.textContent = p.nombre;
+  b.setAttribute('role','tab');
+  b.onclick = ()=>mostrar(i);
+  li.appendChild(b);
+  lista.appendChild(li);
+});
+mostrar(0);
+
+document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('abierto')));
+document.getElementById('anio').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
